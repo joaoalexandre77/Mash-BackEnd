@@ -1,0 +1,126 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Mash",
+        "description": "Documentação da API RESTful do Mash",
+        "version": "1.0.0" 
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080",
+            "description": "Servidor local de desenvolvimento"
+        }
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "summary": "Autenticação do usuário",
+                "tags": ["login"],
+                "requestBody":{
+                    "required": true,
+                    "description": "Requisição",
+                    "content": {
+                        "application/json": {
+                            "schema" : {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "joaoa@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "12345"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Autenticação realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema" :{
+                                    "type": "object",
+                                    "properties": {
+                                    "token": {
+                                        "type": "string",
+                                        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvYUBnbWFpbC5jb20iLCJpYXQiOjE3ODk1MTkxNzgsImV4cCI6MTc4OTYwNTU3OH0.6XNVBTlMwKrqfadkQKdq39ByJHn7nLoxXYFCca9EYPo"
+                                    },
+                                    "user": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "joao"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "joao@gmail.com"
+                                            }
+                                        }
+                                    }
+                                }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Email and password are required",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Email and password are required"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid email or password",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid email or password"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
